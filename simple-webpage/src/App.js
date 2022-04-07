@@ -1,23 +1,35 @@
 import logo from './logo.svg';
-import './App.css';
+//import './App.css';
+import React, { useState } from 'react';
+import LoginPage from './component/pages/LoginPage'
 
 function App() {
+
+  const [user, setUser] = useState({email: "", userName: "", password: ""});
+  const [error, setError] = useState("");
+
+  const Login = details => {
+    console.log(details);
+  }
+
+  const Logout = () => {
+    console.log("Logout");
+  }
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {(user.password != "") ? (
+        <div className="greeting">
+          <h2>Greetings, <span>{user.userName}</span></h2>
+          <button>Logout</button>
+        </div>
+
+      ) : (
+        <LoginPage />
+      )}
+
+  
     </div>
   );
 }
